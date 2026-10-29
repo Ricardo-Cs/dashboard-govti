@@ -1,0 +1,146 @@
+/* Tema inspirado no Power BI: tela cinza, visuais brancos, cantos quase retos. */
+:root {
+  --page: #f3f2f1;
+  --visual: #ffffff;
+  --grid: #edebe9;
+  --text: #252423;
+  --text-2: #605e5c;
+  --text-3: #8a8886;
+  --navy: #1f4e79;
+  --row-alt: #f6f8fb;
+
+  --ok-text: #1a6340;
+  --warn-text: #7a4a00;
+  --bad-text: #a3190f;
+  --info-text: #2b5a8a;
+  --none-text: #4a5462;
+
+  --radius: 2px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 0 1px rgba(0, 0, 0, .06);
+  --font: "Segoe UI", "Segoe UI Web (West European)", Selawik, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--page);
+  -webkit-font-smoothing: antialiased;
+}
+select { font-family: inherit; font-size: inherit; color: inherit; }
+
+.page { max-width: 1440px; margin: 0 auto; padding: 20px 24px 24px; }
+
+.page-head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.page-head h1 { font-size: 26px; font-weight: 400; margin: 0; color: #3b4a5a; }
+.page-head .meta { color: var(--text-2); margin-top: 4px; }
+.page-head .meta b { color: var(--text); font-weight: 600; }
+.page-foot { color: var(--text-3); font-size: 11px; margin: 14px 0 0; }
+
+.slicer { display: flex; flex-direction: column; gap: 3px; min-width: 170px; }
+.slicer label { font-size: 11px; color: var(--text-2); font-weight: 600; }
+.slicer select {
+  appearance: none;
+  height: 30px;
+  padding: 0 28px 0 8px;
+  border: 1px solid #c8c6c4;
+  border-radius: var(--radius);
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23605e5c'/%3E%3C/svg%3E") no-repeat right 9px center;
+  cursor: pointer;
+}
+.slicer select:hover { border-color: #8a8886; }
+.slicer select:focus { outline: 2px solid var(--navy); outline-offset: -1px; }
+
+/* Grade de visuais */
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; }
+.s3 { grid-column: span 3; } .s4 { grid-column: span 4; } .s5 { grid-column: span 5; }
+.s7 { grid-column: span 7; } .s8 { grid-column: span 8; } .s12 { grid-column: span 12; }
+
+.visual {
+  background: var(--visual);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.v-head { margin-bottom: 8px; }
+.v-title { font-size: 14px; font-weight: 600; line-height: 1.3; }
+.v-sub { font-size: 11px; color: var(--text-2); margin-top: 2px; }
+.v-body { flex: 1; min-height: 0; }
+.v-foot { margin-top: 8px; font-size: 11px; color: var(--text-3); }
+
+.chart { width: 100%; position: relative; }
+.chart svg { display: block; overflow: visible; }
+.chart text { font-family: var(--font); }
+
+/* Cartões */
+.card .v-head { margin-bottom: 2px; }
+.card .big { font-size: 34px; font-weight: 600; line-height: 1.1; }
+.card .big small { font-size: 16px; color: var(--text-2); font-weight: 400; margin-left: 4px; }
+.card .note { color: var(--text-2); font-size: 12px; margin-top: 4px; }
+
+.status { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; white-space: nowrap; }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.st-ok { color: var(--ok-text); } .st-warn { color: var(--warn-text); } .st-bad { color: var(--bad-text); }
+.st-info { color: var(--info-text); } .st-none { color: var(--none-text); }
+.tag { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: var(--radius); white-space: nowrap; }
+
+/* Tabelas */
+.table-wrap { overflow-x: auto; }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+.tbl th { background: var(--navy); color: #fff; text-align: left; font-weight: 600; padding: 7px 8px; white-space: nowrap; }
+.tbl th.num, .tbl td.num { text-align: right; }
+.tbl td { padding: 6px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+.tbl tbody tr:nth-child(even) td { background: var(--row-alt); }
+.tbl tbody tr.clickable { cursor: pointer; }
+.tbl tbody tr.clickable:hover td { background: #e8eef6; }
+.tbl tbody tr.sel td { background: #dde8f4; }
+.tbl td.nowrap { white-space: nowrap; }
+.tbl .muted { color: var(--text-2); }
+.empty { color: var(--text-3); text-align: center; padding: 16px 0; }
+
+/* Lista de riscos sob a matriz */
+.risk-list { margin-top: 10px; border-top: 1px solid var(--grid); }
+.risk-row { display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--grid); font-size: 12px; }
+
+.v-ctx { margin-top: 6px; }
+.bars { margin-bottom: 10px; }
+.bar-row { display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; align-items: center; padding: 3px 0; font-size: 12px; }
+.bar { height: 10px; background: var(--grid); }
+.bar i { display: block; height: 100%; background: #2e7d4f; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11px; color: var(--text-2); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { width: 10px; height: 10px; display: inline-block; }
+
+/* Dica (tooltip) */
+.tip {
+  position: fixed; z-index: 100; pointer-events: none; background: #fff; color: var(--text);
+  border: 1px solid #c8c6c4; box-shadow: 0 4px 12px rgba(0, 0, 0, .15); border-radius: var(--radius);
+  padding: 8px 10px; font-size: 12px; max-width: 300px; display: none;
+}
+.tip .t-row { display: flex; justify-content: space-between; gap: 16px; padding: 1px 0; }
+.tip .t-row span:first-child { color: var(--text-2); }
+.tip .t-row span:last-child { font-weight: 600; text-align: right; }
+.tip .t-title { font-weight: 600; margin-bottom: 4px; }
+
+@media (max-width: 1100px) {
+  .s3 { grid-column: span 6; }
+  .s4, .s5, .s7, .s8 { grid-column: span 12; }
+}
+@media (max-width: 640px) {
+  .page { padding: 16px; }
+  .grid > * { grid-column: span 12 !important; }
+  .page-head h1 { font-size: 20px; }
+  .slicer { flex: 1; }
+}
+@media print {
+  .slicer { display: none; }
+  .visual { break-inside: avoid; box-shadow: none; border: 1px solid #e1dfdd; }
+}
