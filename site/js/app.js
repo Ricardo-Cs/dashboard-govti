@@ -125,7 +125,7 @@
       faixaColor: x => FAIXA_COR[faixa(x)], faixaName: faixa
     });
     const lista = D.riscos.slice().sort((a, b) => a.prioridade - b.prioridade)
-      .map(r => `<div class="risk-row"><b>${r.id}</b><span>${esc(r.nome)}</span><span class="tag" style="background:${FAIXA_COR[faixa(indice(r))]};border-color:transparent;color:#252423">${indice(r)} · ${faixa(indice(r))}</span></div>`).join("");
+      .map(r => `<div class="risk-row"><b>${r.id}</b><span>${esc(r.nome)}<br><span class="muted">${esc(r.responsavel)}</span></span><span class="tag" style="background:${FAIXA_COR[faixa(indice(r))]};border-color:transparent;color:#252423">${indice(r)} · ${faixa(indice(r))}</span></div>`).join("");
     const riscoBody = document.createElement("div");
     riscoBody.append(matriz);
     riscoBody.insertAdjacentHTML("beforeend", `<div class="risk-list">${lista}</div>`);

@@ -110,6 +110,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
 .risk-list { margin-top: 10px; border-top: 1px solid var(--grid); }
 .risk-row { display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--grid); font-size: 12px; }
 
+.risk-row .muted { color: var(--text-2); font-size: 11px; }
 .v-ctx { margin-top: 6px; }
 .bars { margin-bottom: 10px; }
 .bar-row { display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; align-items: center; padding: 3px 0; font-size: 12px; }

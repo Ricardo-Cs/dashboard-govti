@@ -9,11 +9,13 @@ Protótipo da atividade de Governança de TI (CSTSI 6 – IFAC). HTML, CSS e Jav
 Página única, com:
 
 - **Cartões:** indicadores não atendidos, riscos críticos, marcos atrasados e decisões propostas.
-- **Indicadores:** os 8 indicadores com valor, meta, situação, fonte e responsável. Clique numa linha para ver a tendência.
-- **Matriz de riscos:** probabilidade × impacto dos riscos R1 a R4.
-- **Tendência:** valor mensal do indicador selecionado, com a linha de meta.
-- **Marcos pendentes:** os marcos de tratamento ainda não concluídos.
-- **Decisões:** as 4 decisões prioritárias para a direção.
+- **Indicadores:** os 8 indicadores com valor, meta, situação, vínculos (PDTI, PSI e risco), fonte e responsável. Clique numa linha para ver a tendência.
+- **Matriz de riscos:** probabilidade × impacto dos riscos R1 a R4, com a legenda das faixas (Baixo 1–5, Médio 6–12, Alto 13–19, Crítico 20–25) e o responsável de cada risco.
+- **Tendência:** valor mensal do indicador selecionado, com a linha de meta. Abaixo, a periodicidade, o responsável, os vínculos, as práticas (SLA, OLA, DRP, DORA) e a fonte do indicador.
+- **Marcos do tratamento de riscos:** barras com os marcos concluídos por risco e a lista dos marcos pendentes.
+- **Decisões:** as 4 decisões prioritárias para a direção, com a evidência a confirmar. Elas se baseiam no último mês com dados (dez/2026).
+
+Em telas pequenas, as colunas secundárias das tabelas ficam ocultas; essas informações continuam na linha abaixo da tendência.
 
 O segmentador **Mês de referência** recalcula tudo. A situação segue a regra do PDTI (seção 7.3), a mesma da planilha:
 
