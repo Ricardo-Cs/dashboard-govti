@@ -76,8 +76,8 @@
     const wrap = document.createElement("div");
     wrap.className = "table-wrap";
     wrap.innerHTML = `<table class="tbl">
-      <thead><tr>${cols.map(c => `<th class="${c.num ? "num" : ""}">${c.label}</th>`).join("")}</tr></thead>
-      <tbody>${rows.length ? rows.map((r, i) => `<tr data-i="${i}" class="${onRow ? "clickable" : ""} ${rowCls ? rowCls(r) : ""}">${cols.map(c => `<td class="${c.num ? "num" : ""} ${c.cls || ""}">${c.fmt(r)}</td>`).join("")}</tr>`).join("")
+      <thead><tr>${cols.map(c => `<th class="${c.num ? "num" : ""} ${c.opt ? "opt" : ""} ${c.opt === "md" ? "opt-md" : ""}">${c.label}</th>`).join("")}</tr></thead>
+      <tbody>${rows.length ? rows.map((r, i) => `<tr data-i="${i}" class="${onRow ? "clickable" : ""} ${rowCls ? rowCls(r) : ""}">${cols.map(c => `<td class="${c.num ? "num" : ""} ${c.opt ? "opt" : ""} ${c.opt === "md" ? "opt-md" : ""} ${c.cls || ""}">${c.fmt(r)}</td>`).join("")}</tr>`).join("")
         : `<tr><td colspan="${cols.length}" class="empty">Nenhum registro.</td></tr>`}</tbody>
     </table>`;
     if (onRow) wrap.querySelectorAll("tbody tr[data-i]").forEach(tr => tr.addEventListener("click", () => onRow(rows[+tr.dataset.i])));
@@ -103,14 +103,14 @@
     // Indicadores (KPI_DASHBOARD)
     out.push(visual(8, "Indicadores", `Situação em ${mesLabel(state.mes)} · clique numa linha para ver a tendência`,
       table([
-        { label: "ID", cls: "nowrap", fmt: i => i.id },
+        { label: "ID", cls: "nowrap", opt: true, fmt: i => i.id },
         { label: "Indicador", fmt: i => esc(i.curto) },
         { label: "Valor", num: true, cls: "nowrap", fmt: i => { const m = medAte(i.id); return m ? `<b>${fmtValor(i, valor(m))}</b>` : "—"; } },
         { label: "Meta", cls: "nowrap", fmt: i => textoMeta(i) },
         { label: "Situação", fmt: i => status(sitAtual(i)) },
-        { label: "Vínculos", cls: "nowrap", fmt: i => `<span class="muted">${vinculos(i)}</span>` },
-        { label: "Fonte", fmt: i => `<span class="muted">${esc(i.fonte)}</span>` },
-        { label: "Responsável", fmt: i => esc(i.responsavel) }
+        { label: "Vínculos", opt: true, fmt: i => `<span class="muted">${vinculos(i)}</span>` },
+        { label: "Fonte", opt: "md", fmt: i => `<span class="muted">${esc(i.fonte)}</span>` },
+        { label: "Responsável", opt: true, fmt: i => esc(i.responsavel) }
       ], D.indicadores, { onRow: i => { state.ind = i.id; render(); }, rowCls: i => (i.id === state.ind ? "sel" : "") }),
       "Dados simulados (a validar). Metas e prazos: PDTI v0.1, PSI e Matriz de Riscos."));
 
@@ -150,7 +150,7 @@
     });
     out.push(visual(7, `${i.id} · ${esc(i.curto)}`, `Valor por mês · linha tracejada = meta (${textoMeta(i)})`, linha,
       legenda([["Atendido", COR.ok], ["Em atenção", COR.warn], ["Não atendido", COR.bad]]) +
-      `<div class="v-ctx">Periodicidade: ${esc(i.periodicidade)} · Vínculos: ${vinculos(i)}${i.praticas.length ? " · Práticas: " + i.praticas.join(", ") : ""} · Fonte: ${esc(i.fonte)}</div>`));
+      `<div class="v-ctx">Periodicidade: ${esc(i.periodicidade)} · Responsável: ${esc(i.responsavel)} · Vínculos: ${vinculos(i)}${i.praticas.length ? " · Práticas: " + i.praticas.join(", ") : ""} · Fonte: ${esc(i.fonte)}</div>`));
 
     // Marcos pendentes
     const ordem = { "Atrasado": 0, "Em dia": 1 };
@@ -173,7 +173,7 @@
       table([
         { label: "ID", fmt: d => d.id },
         { label: "Decisão", fmt: d => esc(d.decisao) },
-        { label: "Justificativa", fmt: d => `<span class="muted">${esc(d.justificativa)}</span>` },
+        { label: "Justificativa", opt: true, fmt: d => `<span class="muted">${esc(d.justificativa)}</span>` },
         { label: "Risco", fmt: d => d.risco },
         { label: "Responsável", fmt: d => esc(d.responsavel) },
         { label: "Prazo", cls: "nowrap", fmt: d => fmtDate(d.prazo) },
